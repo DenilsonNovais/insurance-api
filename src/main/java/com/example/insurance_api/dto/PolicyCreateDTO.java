@@ -12,7 +12,7 @@ public class PolicyCreateDTO {
 
     @NotBlank(message = "cpfSegurado é obrigatório")
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF deve estar no formato 000.000.000-00")
-    private String cpfSeguro;
+    private String cpfSegurado;
 
     @NotNull(message = "dataInicioVigencia é obrigatória")
     private LocalDate dataInicioVigencia;
@@ -37,12 +37,12 @@ public class PolicyCreateDTO {
         this.numeroApolice = numeroApolice;
     }
 
-    public String getCpfSeguro() {
-        return cpfSeguro;
+    public String getCpfSegurado() {
+        return cpfSegurado;
     }
 
-    public void setCpfSeguro(String cpfSeguro) {
-        this.cpfSeguro = cpfSeguro;
+    public void setCpfSegurado(String cpfSegurado) {
+        this.cpfSegurado = cpfSegurado;
     }
 
     public LocalDate getDataInicioVigencia() {
