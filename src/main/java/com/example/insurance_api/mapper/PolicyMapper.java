@@ -13,7 +13,7 @@ public final class PolicyMapper {
         if (dto == null) return null;
         return Policy.builder()
                 .numeroApolice(dto.getNumeroApolice())
-                .cpfSegurado(dto.getCpfSeguro())
+                .cpfSegurado(dto.getCpfSegurado())
                 .dataInicioVigencia(dto.getDataInicioVigencia())
                 .dataFimVigencia(dto.getDataFimVigencia())
                 .placaVeiculo(dto.getPlacaVeiculo())
