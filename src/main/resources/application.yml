@@ -4,10 +4,24 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none         # ❗ desativa criação automática do Hibernate, usaremos o schema.sql
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true     # exibe SQL formatado no console
+
+  # garante que o schema.sql e data.sql sejam executados sempre que a app subir
+  sql:
+    init:
+      mode: always
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console      # acessível em http://localhost:8080/h2-console
 
 server:
   port: 8080
