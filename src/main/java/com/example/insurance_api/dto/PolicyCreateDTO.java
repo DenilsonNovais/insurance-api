@@ -28,7 +28,6 @@ public class PolicyCreateDTO {
     @DecimalMin(value = "0.0", inclusive = false, message = "valorPremio deve ser maior que zero")
     private BigDecimal valorPremio;
 
-    // getters e setters
     public String getNumeroApolice() {
         return numeroApolice;
     }
