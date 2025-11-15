@@ -25,12 +25,10 @@ public class PolicyService {
 
     @Transactional
     public PolicyResponseDTO create(PolicyCreateDTO dto) {
-        // unicidade do número da apólice
         if (repository.existsByNumeroApolice(dto.getNumeroApolice())) {
             throw new BadRequestException("Número de apólice já existe");
         }
 
-        // validade das datas
         if (dto.getDataFimVigencia().isBefore(dto.getDataInicioVigencia())
                 || dto.getDataFimVigencia().isEqual(dto.getDataInicioVigencia())) {
             throw new BadRequestException("Data de fim deve ser posterior à data de início");
@@ -68,17 +66,14 @@ public class PolicyService {
         Policy p = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Apólice não encontrada"));
 
-        // se mudou numeroApolice, verifica unicidade
         if (dto.getNumeroApolice() != null && !dto.getNumeroApolice().equals(p.getNumeroApolice())) {
             if (repository.existsByNumeroApolice(dto.getNumeroApolice())) {
                 throw new BadRequestException("Número de apólice novo já existe");
             }
         }
 
-        // atualiza campos
         PolicyMapper.updateEntityFromDto(p, dto);
 
-        // valida vigência após atualização parcial
         if (p.getDataFimVigencia().isBefore(p.getDataInicioVigencia())
                 || p.getDataFimVigencia().isEqual(p.getDataInicioVigencia())) {
             throw new BadRequestException("Data de fim deve ser posterior à data de início");
