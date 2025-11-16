@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: insurance-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: insurance
+      POSTGRES_USER: insurance_user
+      POSTGRES_PASSWORD: insurance_pass
+    volumes:
+      - insurance_pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"   # <-- mapeia host 5433 -> container 5432
+
+volumes:
+  insurance_pgdata:
+
