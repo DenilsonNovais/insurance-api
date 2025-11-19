@@ -28,3 +28,31 @@ spring:
 
 server:
   port: 8080
+
+# -----------------------
+# Profile: postgres
+# -----------------------
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/insurance
+    username: insurance_user
+    password: insurance_pass
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: never
+
+  jpa:
+    hibernate:
+      ddl-auto: update            # em dev ok; em prod prefira 'validate' ou 'none' + migrations
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+server:
+  port: 8080
