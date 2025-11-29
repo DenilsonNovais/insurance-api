@@ -4,18 +4,18 @@ services:
     container_name: insurance-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: insurance
-      POSTGRES_USER: insurance_user
-      POSTGRES_PASSWORD: insurance_pass
-    volumes:
-      - insurance_pgdata:/var/lib/postgresql/data
+      POSTGRES_USER: insurance
+      POSTGRES_PASSWORD: insurance
+      POSTGRES_DB: insurance_db
     ports:
-      - "5434:5432"   # host:container -> ajustado para evitar conflito com seu postgres local
+      - "5433:5432"   # mapeia host:container -> usa 5433 no host para evitar conflito com postgres local
+    volumes:
+      - pgdata_insurance:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
       retries: 5
 
 volumes:
-  insurance_pgdata:
+  pgdata_insurance:
